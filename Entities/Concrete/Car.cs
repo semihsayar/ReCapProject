@@ -10,11 +10,11 @@ namespace Entities.Concrete
     public class Car : IEntity
     {
         // Id
-        public int Id { get; set; }
+        public int CarId { get; set; }
         // Marka Id
         public int BrandId { get; set; }
         // Renk Id
-        public int ColordId { get; set; }
+        public int ColorId { get; set; }
         // Model Yılı
         public int ModelYear { get; set; }
         // Günlük Fiyat
