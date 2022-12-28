@@ -21,11 +21,15 @@ namespace Business.Concrete
         public void Add(Brand brand)
         {
             _brandDal.Add(brand);
+            Console.WriteLine("{0} İsimli Marka Eklenmiştir!",brand.BrandName);
         }
 
         public void Delete(Brand brand)
         {
             _brandDal.Delete(brand);
+            Console.WriteLine("{0} Id'li Marka Silinmiştir",brand.BrandId);
+            
+           
         }
 
         public List<Brand> GetAll()
@@ -41,6 +45,7 @@ namespace Business.Concrete
         public void Update(Brand brand)
         {
             _brandDal.Update(brand);
+            Console.WriteLine("{0} Id'li Marka Güncellenmiştir",brand.BrandId);
         }
     }
 }
