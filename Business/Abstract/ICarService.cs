@@ -1,4 +1,5 @@
 ﻿
+using Core.Utilities.Results;
 using Entities.Concrete;
 using Entities.DTOs;
 using Microsoft.EntityFrameworkCore.Query.Internal;
@@ -13,14 +14,14 @@ namespace Business.Abstract
     public interface ICarService
     {
         
-        List<Car> GetAll();
-        List<Car> GetCarsByBrandId(int id);
-        List<Car> GetCarsByColorId(int id);
-        List<Car> GetById(int id);
-        List<Car> GetByDailyPrice(decimal min, decimal max);
-        List<CarDetailDto> GetCarDetailDtos();
-        void Add(Car car);
-        void Update(Car car);
-        void Delete(Car car); 
+        IDataResult<List<Car>> GetAll();
+        IDataResult<List<Car>> GetCarsByBrandId(int brandId);
+        IDataResult<List<Car>> GetCarsByColorId(int colorId);
+        IDataResult<List<Car>> GetById(int carId);
+        IDataResult<List<Car>> GetByDailyPrice(decimal min, decimal max);
+        IDataResult<List<CarDetailDto>>GetCarDetailDtos();
+        IResult Add(Car car);
+        IResult Update(Car car);
+        IResult Delete(Car car); 
     }
 }
