@@ -1,5 +1,6 @@
 ﻿using Business.Concrete;
 using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -7,6 +8,10 @@ using Entities.Concrete;
 CarManager carManager = new CarManager(new EfCarDal());
 BrandManager brandManager = new BrandManager(new EfBrandDal());
 ColorManager colorManager = new ColorManager(new EfColorDal());
+
+UserManager userManager = new UserManager(new EfUserDal());
+CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+RentalManager rentalManager = new RentalManager(new EfRentalDal());
 
 //                      CAR
 
@@ -36,6 +41,23 @@ ColorManager colorManager = new ColorManager(new EfColorDal());
 // ColorDeleted(colorManager);
 // ColorUpdated(colorManager);
 
+//                    USER
+
+// UserAdded(userManager);
+// UserUpdated(userManager);
+// UserDeleted(userManager);
+// UsersGetAll(userManager);
+
+//                   CUSTOMER
+
+// CustomerAdded(customerManager);
+// CustomerDeleted(customerManager);
+// CustomerUpdated(customerManager);
+// CustomersListed(customerManager);
+
+//                   RENTAL
+
+// RentalAdded(rentalManager);
 static void CarGetAll(CarManager carManager)
 {
     var result = carManager.GetAll();
@@ -177,5 +199,67 @@ static void ColorDeleted(ColorManager colorManager)
 static void ColorUpdated(ColorManager colorManager)
 {
     var result = colorManager.Update(new Color { ColorId = 2, ColorName = "Beyaz" });
+    Console.WriteLine(result.Message);
+}
+
+static void UserAdded(UserManager userManager)
+{
+    var result = userManager.Add(new User { FirstName = "Mehmet", LastName = "Estağfurullah", Email = "mehmet@gmail.com", Password = "12345" });
+    Console.WriteLine(result.Message);
+}
+
+static void UserUpdated(UserManager userManager)
+{
+    var result = userManager.Update(new User { UserId = 3, FirstName = "Ahmet", LastName = "Taş", Email = "ahmet@gmail.com", Password = "12345" });
+    Console.WriteLine(result.Message);
+}
+
+static void CustomerAdded(CustomerManager customerManager)
+{
+    var result = customerManager.Add(new Customer { UserId = 3, CompanyName = "Ahmet Ticarettt" });
+    Console.WriteLine(result.Message);
+}
+
+static void CustomerDeleted(CustomerManager customerManager)
+{
+    var result = customerManager.Delete(new Customer { CustomerId = 1 });
+    Console.WriteLine(result.Message);
+}
+
+static void UserDeleted(UserManager userManager)
+{
+    var result = userManager.Delete(new User { UserId = 4 });
+    Console.WriteLine(result.Message);
+}
+
+static void CustomerUpdated(CustomerManager customerManager)
+{
+    var result = customerManager.Update(new Customer { CustomerId = 2, UserId = 3, CompanyName = "Ahmet Ticaret" });
+    Console.WriteLine(result.Message);
+}
+
+static void UsersGetAll(UserManager userManager)
+{
+    var result = userManager.GetAll();
+    foreach (var user in result.Data)
+    {
+        Console.WriteLine("{0} / {1} / {2} / {3}", user.FirstName, user.LastName, user.Email, user.Password);
+    }
+    Console.WriteLine(result.Message);
+}
+
+static void CustomersListed(CustomerManager customerManager)
+{
+    var result = customerManager.GetAll();
+    foreach (var customer in result.Data)
+    {
+        Console.WriteLine("{0} / {1}", customer.UserId, customer.CompanyName);
+    }
+    Console.WriteLine(result.Message);
+}
+
+static void RentalAdded(RentalManager rentalManager)
+{
+    var result = rentalManager.Add(new Rental { CarId = 2003, CustomerId = 2, RentDate = DateTime.Now, ReturnDate = DateTime.Now.AddDays(1) });
     Console.WriteLine(result.Message);
 }
