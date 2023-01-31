@@ -31,5 +31,9 @@ namespace Business.Concrete
             return new SuccessResult(Messages.RentalSuccessful);
         }
 
+        public IDataResult<List<Rental>> GetAll()
+        {
+           return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll());
+        }
     }
 }
