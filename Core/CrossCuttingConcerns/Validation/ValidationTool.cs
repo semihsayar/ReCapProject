@@ -6,7 +6,7 @@ using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.CrossCuttingConcerns.FluentValidation
+namespace Core.CrossCuttingConcerns.Validation
 {
     public static class ValidationTool
     {
