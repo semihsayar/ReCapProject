@@ -20,7 +20,6 @@ RentalManager rentalManager = new RentalManager(new EfRentalDal());
 // GetCarsByColorId(carManager);
 // GetByDailyPrice(carManager);
 // GetCarDetailDtos(carManager);
-// GetById(carManager);
 // CarAdded(carManager);
 // CarDeleted(carManager);
 // CarUpdated(carManager);
@@ -28,7 +27,6 @@ RentalManager rentalManager = new RentalManager(new EfRentalDal());
 //                     BRAND
 
 // BrandGetAll(brandManager);
-// BrandGetById(brandManager);
 // BrandAdded(brandManager);
 // BrandDeleted(brandManager);
 // BrandUpdated(brandManager);
@@ -36,7 +34,6 @@ RentalManager rentalManager = new RentalManager(new EfRentalDal());
 //                     COLOR
 
 // ColorGetAll(colorManager);
-// ColorGetById(colorManager);
 // ColorAdded(colorManager);
 // ColorDeleted(colorManager);
 // ColorUpdated(colorManager);
@@ -104,13 +101,6 @@ static void GetCarDetailDtos(CarManager carManager)
     }
 }
 
-static void GetById(CarManager carManager)
-{
-    foreach (var car in carManager.GetById(1).Data)
-    {
-        Console.WriteLine("{0} / {1} / {2} / {3} / {4} / {5}", car.CarId, car.BrandId, car.ColorId, car.ModelYear, car.DailyPrice, car.Description);
-    }
-}
 
 static void CarAdded(CarManager carManager)
 {
@@ -140,14 +130,6 @@ static void BrandGetAll(BrandManager brandManager)
     Console.WriteLine(result.Message);
 }
 
-static void BrandGetById(BrandManager brandManager)
-{
-    foreach (var brand in brandManager.GetById(1).Data)
-    {
-        Console.WriteLine("{0} / {1}", brand.BrandId, brand.BrandName);
-    }
-}
-
 static void BrandDeleted(BrandManager brandManager)
 {
     var result = brandManager.Delete(new Brand { BrandId = 4002 });
@@ -174,14 +156,6 @@ static void ColorGetAll(ColorManager colorManager)
         Console.WriteLine("{0} / {1}", color.ColorId, color.ColorName);
     }
     Console.WriteLine(result.Message);
-}
-
-static void ColorGetById(ColorManager colorManager)
-{
-    foreach (var color in colorManager.GetById(2).Data)
-    {
-        Console.WriteLine("{0} / {1}", color.ColorId, color.ColorName);
-    }
 }
 
 static void ColorAdded(ColorManager colorManager)
