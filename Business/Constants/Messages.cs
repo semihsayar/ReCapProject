@@ -41,6 +41,9 @@ namespace Business.Constants
         public static string RentalFailed = "Kiralama Başarısız";
 
 
-
+        public static string ImageAdded = "Resim Eklendi";
+        public static string ImageDeleted = "Resim Silindi";
+        public static string ImageUpdated = "Resim Güncellendi";
+        public static string CarImageLimitError = "Araba resmi en fazla 5 tane olabilir";
     }
 }
