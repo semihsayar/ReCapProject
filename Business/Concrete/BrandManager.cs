@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -32,7 +33,7 @@ namespace Business.Concrete
             _brandDal.Delete(brand);
             return new SuccessResult(Messages.BrandDeleted);
         }
-
+        [SecuredOperation("admin,Brand.List")]
         public IDataResult<List<Brand>> GetAll()
         {
             return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(),Messages.BrandListed);

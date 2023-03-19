@@ -5,6 +5,7 @@ using Business.Concrete;
 using Castle.DynamicProxy;
 using Core.Utilities.Helpers.FileHelper;
 using Core.Utilities.Interceptors;
+using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Http;
@@ -34,7 +35,7 @@ namespace Business.DependencyResolvers.Autofac
 
             // USER
             builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
-            builder.RegisterType<EfColorDal>().As<IColorDal>().SingleInstance();
+            builder.RegisterType<EfUserDal>().As<IUserDal>().SingleInstance();
 
             // CUSTOMER
             builder.RegisterType<CustomerManager>().As<ICustomerService>().SingleInstance();
@@ -50,6 +51,12 @@ namespace Business.DependencyResolvers.Autofac
 
             // FILEHELPER
             builder.RegisterType<FileHelperManager>().As<IFileHelper>().SingleInstance();
+
+            // AUTH
+            builder.RegisterType<AuthManager>().As<IAuthService>().SingleInstance();
+
+            // JWT
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>().SingleInstance();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
