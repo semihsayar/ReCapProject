@@ -33,7 +33,7 @@ namespace Business.Concrete
             _brandDal.Delete(brand);
             return new SuccessResult(Messages.BrandDeleted);
         }
-        [SecuredOperation("admin,Brand.List")]
+        //[SecuredOperation("admin,Brand.List")]
         public IDataResult<List<Brand>> GetAll()
         {
             return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(),Messages.BrandListed);
